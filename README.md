@@ -1,157 +1,269 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>بيرجر الغرب • تصميم بديل</title>
-  <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700&display=swap" rel="stylesheet">
-  <style>
-    :root{--bg:#fff2eb;--card:#ffffff;--accent:#ff3b30;--muted:#6b6b6b}
-    *{box-sizing:border-box}
-    body{margin:0;font-family:'Almarai',sans-serif;background:linear-gradient(180deg,#fff2eb 0%, #ffe8de 100%);color:#222}
-    a{color:inherit}
-    header{position:sticky;top:0;background:rgba(255,255,255,0.85);backdrop-filter:blur(6px);z-index:50;border-bottom:1px solid rgba(0,0,0,0.06)}
-    .container{max-width:1100px;margin:0 auto;padding:18px}
-    .nav{display:flex;align-items:center;justify-content:space-between}
-    .logo{display:flex;align-items:center;gap:12px}
-    .logo .ico{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#ffd1c1,#ff3b30);display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff}
-    .cta{background:var(--accent);color:#fff;padding:10px 14px;border-radius:10px;font-weight:700}
-
-    /* Hero with split diagonal */
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:24px;align-items:center;padding:40px 18px}
-    .hero-card{background:var(--card);border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,0.06)}
-    h1{margin:0;font-size:36px}
-    p.lead{color:var(--muted);margin-top:8px}
-
-    /* Animated SVG burger */
-    .svg-wrap{display:flex;align-items:center;justify-content:center;height:320px}
-    .burger-svg{width:260px;height:260px}
-    .bun-top{transform-origin:50% 40%;animation:bounce 3s ease-in-out infinite}
-    @keyframes bounce{0%{transform:translateY(0)}50%{transform:translateY(-14px) rotate(-2deg)}100%{transform:translateY(0)}}
-
-    /* Long page sections */
-    section{padding:40px 18px}
-    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .menu-card{background:linear-gradient(180deg,#fff,#fff8f6);padding:14px;border-radius:12px;border:1px solid rgba(0,0,0,0.04)}
-    .price{font-weight:800;color:var(--accent)}
-
-    /* Order modal */
-    .order-modal{position:fixed;right:18px;bottom:18px;background:var(--accent);color:#fff;padding:12px 16px;border-radius:12px;box-shadow:0 12px 30px rgba(0,0,0,0.18);cursor:pointer}
-
-    /* Testimonials slider (css scroll snap) */
-    .snap{display:flex;gap:12px;overflow:auto;padding-bottom:8px;scroll-snap-type:x mandatory}
-    .snap > div{min-width:280px;flex:0 0 auto;scroll-snap-align:center;background:#fff;border-radius:12px;padding:14px;border:1px solid rgba(0,0,0,0.04)}
-
-    footer{padding:28px 18px;text-align:center;color:var(--muted)}
-
-    @media(max-width:900px){.hero{grid-template-columns:1fr}.grid-3{grid-template-columns:repeat(2,1fr)} }
-    @media(max-width:560px){.grid-3{grid-template-columns:1fr}}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haki Sochi - مطعم سوشي</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        nav {
+            background-color: #2c3e50; /* أزرق داكن */
+            color: white;
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #f39c12; /* برتقالي للـ hover */
+        }
+        .hero {
+            background-image: url('https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 60px; /* لتجنب الشريط الثابت */
+            animation: slideIn 3s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .hero h1 {
+            font-size: 4em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .hero p {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        .hero button {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .hero button:hover {
+            background-color: #c0392b;
+        }
+        .section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease-out;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .menu {
+            text-align: center;
+        }
+        .menu h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #2c3e50;
+        }
+        .menu-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .menu-item {
+            width: 250px;
+            margin: 15px;
+            background: #8B4513; /* تغيير إلى بني داكن */
+            color: white; /* للتباين مع الخلفية البنية */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .menu-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .gallery {
+            background-color: #34495e;
+            color: white;
+            text-align: center;
+        }
+        .gallery h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        .gallery img {
+            width: 30%;
+            margin: 10px;
+            border-radius: 10px;
+            transition: transform 0.5s;
+        }
+        .gallery img:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+        .contact {
+            background-color: white; /* تغيير إلى أبيض */
+            color: black; /* تغيير النص إلى أسود للتباين */
+            text-align: center;
+            border: 2px solid #8B4513; /* حدود بنية للتمييز */
+        }
+        .contact h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #8B4513; /* عنوان بني */
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        @media (max-width: 768px) {
+            .menu-items {
+                flex-direction: column;
+                align-items: center;
+            }
+            .menu-item {
+                width: 100%;
+            }
+            .gallery img {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="container nav">
-      <div class="logo"><div class="ico">🍔</div><div><strong>بيرجر الغرب</strong><div style="font-size:12px;color:var(--muted)">نكهات لا تُقاوم</div></div></div>
-      <div style="display:flex;gap:12px;align-items:center"><a class="cta" href="#menu">اطلب الآن</a><a href="#contact" style="font-size:14px;color:var(--muted)">تواصل</a></div>
-    </div>
-  </header>
+    <nav>
+        <ul>
+            <li><a href="#hero">الرئيسية</a></li>
+            <li><a href="#menu">القائمة</a></li>
+            <li><a href="#gallery">الصور</a></li>
+            <li><a href="#contact">الاتصال</a></li>
+        </ul>
+    </nav>
 
-  <main>
-    <section class="hero">
-      <div class="hero-card">
-        <h1>تعرف على بيرجر الغرب — طابع غربي مع لمسة محلية</h1>
-        <p class="lead">برغر محضر من مكونات مُنتقاة، خبز مخبوز يومياً، وصوصات منزلية سرية — جرب تشكيلاتنا الخاصة أو صمّم البرغر بنفسك.</p>
-
-        <div style="display:flex;gap:12px;margin-top:18px;flex-wrap:wrap">
-          <div style="background:#fff8f2;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.03)">توصيل سريع</div>
-          <div style="background:#fff8f2;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.03)">مكونات طازجة</div>
-          <div style="background:#fff8f2;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.03)">خيارات نباتية</div>
+    <section class="hero" id="hero">
+        <div>
+            <h1>مرحباً بك في Haki Sochi</h1>
+            <p>استمتع بأشهى أطباق السوشي الطازجة!</p>  <!-- النص المحدث هنا -->
+            <button onclick="scrollToMenu()">اطلب الآن</button>
         </div>
-
-        <div style="margin-top:22px;display:flex;gap:12px">
-          <a class="cta" href="#menu">اطلب من القائم</a>
-          <a style="padding:10px 14px;border-radius:10px;background:transparent;border:1px solid rgba(0,0,0,0.06)">القائمة الكاملة</a>
-        </div>
-      </div>
-
-      <div class="svg-wrap">
-        <!-- playful SVG burger with animated top bun -->
-        <svg class="burger-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#ffd1c1"/><stop offset="1" stop-color="#ff7a5a"/></linearGradient>
-          </defs>
-          <g transform="translate(100,100)">
-            <g class="bun-top">
-              <ellipse rx="68" ry="30" fill="url(#g1)"></ellipse>
-              <g fill="#fff" opacity="0.9">
-                <circle cx="-30" cy="-8" r="3"/>
-                <circle cx="10" cy="-12" r="2.5"/>
-                <circle cx="36" cy="-6" r="2"/>
-              </g>
-            </g>
-            <ellipse cy="18" rx="72" ry="14" fill="#6a3b1a"></ellipse>
-            <rect x="-68" y="4" width="136" height="30" rx="6" fill="#d4a23b"></rect>
-            <ellipse cy="36" rx="70" ry="10" fill="#f6f0e4"></ellipse>
-          </g>
-        </svg>
-      </div>
     </section>
 
-    <section id="menu">
-      <div class="container">
-        <h2 style="margin:0 0 12px;text-align:right">قائمة مُختارة</h2>
-        <div class="grid-3">
-          <div class="menu-card">
-            <h4 style="margin:0">الملك الغربي</h4>
-            <p style="color:var(--muted);margin:6px 0">لحم بقري ممتاز، جبنة شيدر، بصل مكرمل</p>
-            <div style="display:flex;justify-content:space-between;align-items:center"><div class="price">95 درهم</div><button style="padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,#ff6b50,#ff3b30);color:#fff;border:none">أضف</button></div>
-          </div>
-          <div class="menu-card">
-            <h4 style="margin:0">تشيكن سبايسي</h4>
-            <p style="color:var(--muted);margin:6px 0">فيليه دجاج متبل ومقرمش</p>
-            <div style="display:flex;justify-content:space-between;align-items:center"><div class="price">78 درهم</div><button style="padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,#ff6b50,#ff3b30);color:#fff;border:none">أضف</button></div>
-          </div>
-          <div class="menu-card">
-            <h4 style="margin:0">برغر نباتي بالحمص</h4>
-            <p style="color:var(--muted);margin:6px 0">خيار صحي ونكهة رائعة</p>
-            <div style="display:flex;justify-content:space-between;align-items:center"><div class="price">62 درهم</div><button style="padding:8px 12px;border-radius:10px;background:linear-gradient(90deg,#ff6b50,#ff3b30);color:#fff;border:none">أضف</button></div>
-          </div>
+    <section class="section menu" id="menu">
+        <h2>قائمة الطعام</h2>
+        <div class="menu-items">
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="سوشي سلمون">
+                <h3>سوشي السلمون</h3>
+                <p>طازج وشهي - 50 درهم مغربي</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="سوشي تونة">
+                <h3>سوشي التونة</h3>
+                <p>نكهة قوية - 60 درهم مغربي</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="سوشي نباتي">
+                <h3>سوشي نباتي</h3>
+                <p>للنباتيين - 40 درهم مغربي</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="بيتزا">
+                <h3>بيتزا مارغريتا</h3>
+                <p>جبنة وطماطم - 45 درهم مغربي</p>
+            </div>
+            <div class="menu-item">
+                <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="بيرجر">
+                <h3>بيرجر كلاسيكي</h3>
+                <p>لحم وخضار - 55 درهم مغربي</p>
+            </div>
         </div>
-      </div>
     </section>
 
-    <section style="background:linear-gradient(180deg,transparent,#fff8f6);">
-      <div class="container">
-        <h3 style="text-align:right;margin-bottom:12px">آراء العملاء</h3>
-        <div class="snap">
-          <div><strong>ليلى</strong><p style="color:var(--muted);margin:6px 0">أفضل برغر في المدينة، والخبز طازج كل صباح.</p></div>
-          <div><strong>يوسف</strong><p style="color:var(--muted);margin:6px 0">الصلصات لديهم فريدة — لا أستطيع التوقف!</p></div>
-          <div><strong>عائشة</strong><p style="color:var(--muted);margin:6px 0">خدمة سريعة ونظافة ممتازة.</p></div>
-        </div>
-      </div>
+    <section class="section gallery" id="gallery">
+        <h2>صور من مطعمنا</h2>
+        <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="صورة سوشي">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="صورة سوشي">
+        <img src="https://images.unsplash.com/photo-1579584425555-c3ce17fd4351?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=60" alt="صورة سوشي">
     </section>
 
-    <section id="contact">
-      <div class="container">
-        <h3 style="text-align:right">حجز و تواصل</h3>
-        <form onsubmit="event.preventDefault();alert('شكراً! تم إرسال الرسالة (نموذج تجريبي)');" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
-          <input placeholder="الاسم" required style="padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.06)" />
-          <input placeholder="هاتف" required style="padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.06)" />
-          <textarea placeholder="رسالة" rows="4" style="grid-column:1/-1;padding:10px;border-radius:10px;border:1px solid rgba(0,0,0,0.06)"></textarea>
-          <div style="grid-column:1/-1;text-align:left"><button class="cta">أرسل</button></div>
-        </form>
-      </div>
+    <section class="section contact" id="contact">
+        <h2>اتصل بنا</h2>
+        <p>العنوان: شارع محمد الخامس، الدار البيضاء</p>
+        <p>الهاتف: 012-3456789</p>
+        <p>البريد الإلكتروني: info@hakisushi.com</p>
+        <p><a href="https://wa.me/212612345678" target="_blank" style="color: #8B4513; text-decoration: underline;">تواصل عبر WhatsApp: +212 6 12 34 56 78</a></p>
     </section>
 
-  </main>
+    <footer>
+        <p>&copy; 2023 Haki Sochi. جميع الحقوق محفوظة.</p>
+    </footer>
 
-  <div class="order-modal" onclick="alert('نموذج الطلب: هذه واجهة تجريبية');">🛒 افتح الطلب</div>
-
-  <footer>
-    <div class="container">
-      <small>© 2025 بيرجر الغرب — جميع الحقوق محفوظة</small>
-    </div>
-  </footer>
+    <script>
+        function scrollToMenu() {
+            document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+        }
+        // رسوم متحركة محسنة
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(50px)';
+            section.style.transition = 'opacity 1s, transform 1s';
+        });
+    </script>
 </body>
 </html>
-
